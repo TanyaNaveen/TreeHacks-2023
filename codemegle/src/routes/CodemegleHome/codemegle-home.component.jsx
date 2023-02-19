@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, getToDoList, addToDoItem, deleteToDoItem } from "../../utils/firebase/firebase.utils";
 import { useAuthState } from "react-firebase-hooks/auth";
+import "./codemegle-home.css";
+import logo from "./logo.png";
+
 
 // let startBtn = document.getElementById("startBtn");
 let endBtn = document.getElementById("end-btn");
@@ -85,7 +88,7 @@ const CodemegleHome = () => {
 
     return (
         <div>
-            <h1>Codemegle</h1>
+            <img src={logo} alt="logo" height={150} width={400}/>
 
             {toDoItems && user ? (
                 <table style={{
@@ -94,7 +97,7 @@ const CodemegleHome = () => {
                     justifyContent: 'center',
                 }}>
                     <div>
-                        <tbody>
+                        <tbody className='homeBody'>
                             <tr>
                                 <td>{"Name (Optional)"}</td>
                             </tr>

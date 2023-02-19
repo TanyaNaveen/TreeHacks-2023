@@ -20,7 +20,6 @@
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
-
       Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
@@ -31,20 +30,18 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div>
-      <video width="360" height="360" id="videoPlayer1" class="vidBox" hidden controls>
-        Your browser does not support the video playback with the video tag.
-      </video>
-      <iframe src="https://viewer.millicast.com?streamId=hLBENr/leb2jnrj" width="360" height="360" hidden></iframe>
-      <iframe id="videoPlayer2" src="https://viewer.millicast.com?streamId=fzRXnJ/lear5i93" allowfullscreen width="360" height="360" hidden></iframe>
-      <button id="end-btn" hidden> End Session </button>
+      <div><video width="300" height="300" id="videoPlayer1" class="vidBox" hidden controls>
+          Your browser does not support the video playback with the video tag.
+        </video></div>
+      <div><iframe class="vidBox" src="https://viewer.millicast.com?streamId=hLBENr/leb2jnrj" width="300" height="300" hidden></iframe></div>
+      <div><iframe class="vidBox" id="videoPlayer2" src="https://viewer.millicast.com?streamId=fzRXnJ/lear5i93" allowfullscreen width="300" height="300" hidden></iframe></div>
+      <div><button id="end-btn" hidden> End Session </button></div>
     </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
-
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
-
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logInWithEmailAndPassword, registerWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import "./login.styles.css";
-
+import logo from "./logo.png";
 
 const Login = () => {
     const [loginEmail, setLoginEmail] = useState("");
@@ -42,11 +42,11 @@ const Login = () => {
 
     return (
         <div className="page">
-            <h1 className="title">codemingle</h1>
+            <img src={logo} alt="logo" height={150} width={400}/>
             <div className="row">
 
                 <div className="login col card">
-                    <h2>Sign In</h2>
+                    <h2 className="cardTitle">Sign In</h2>
 
                     <div className="login__container">
                         <div>
@@ -79,7 +79,7 @@ const Login = () => {
                 </div>
 
                 <div className="register col card">
-                    <h2>Create Account</h2>
+                    <h2 className="cardTitle">Create Account</h2>
 
                     <div className="login__container">
                         <div>

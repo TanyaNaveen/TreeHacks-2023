@@ -35,7 +35,6 @@ body {
 .card {
     border: 1px solid black;
     height: 300px;
-    margin-top: 2.5rem;
     width: 20em;
     float: left;
     background-color: white;
@@ -50,6 +49,10 @@ body {
     margin: auto;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+.login__btn {
+    background-color: #b02a81;
 }
 
 label {
@@ -71,6 +74,11 @@ button {
 .cardText {
     margin: 0.75rem;
     text-align: left;
+
     
 }
   
+.cardTitle {
+    color:#36b6fe;
+
+}

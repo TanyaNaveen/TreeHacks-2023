@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { logInWithEmailAndPassword, registerWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import "./login.styles.css";
+
 
 const Login = () => {
     const [loginEmail, setLoginEmail] = useState("");
@@ -39,76 +41,77 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <div className="login">
-                <h1>Login</h1>
+        <div className="page">
+            <h1 className="title">Welcome to Codemegle!</h1>
+            <div className="row">
 
-                <div className="login__container">
-                    <div>
-                        <label style={{textAlign: "left", fontWeight: 'bold'}}>E-mail Address: </label>
-                        <input
-                            type="text"
-                            className="login__textBox"
-                            value={loginEmail}
-                            onChange={(e) => setLoginEmail((e.target.value).toLowerCase())}
-                            placeholder="E-mail Address"
-                            required
-                        />
+                <div className="login col card">
+                    <h2>Sign In</h2>
+
+                    <div className="login__container">
+                        <div>
+                            <label className="cardText">E-mail Address</label>
+                            <input 
+                                type="text"
+                                className="login__textBox"
+                                value={loginEmail}
+                                onChange={(e) => setLoginEmail((e.target.value).toLowerCase())}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="cardText">Password</label>
+                            <input
+                                type="password"
+                                className="login__textBox"
+                                value={loginPassword}
+                                onChange={(e) => setLoginPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <button
+                            className="login__btn"
+                            onClick={handleSignIn}
+                        >
+                            Sign In
+                        </button>
                     </div>
-                    <div>
-                        <label style={{textAlign: "left", fontWeight: 'bold'}}>Password: </label>
-                        <input
-                            type="password"
-                            className="login__textBox"
-                            value={loginPassword}
-                            onChange={(e) => setLoginPassword(e.target.value)}
-                            placeholder="Password"
-                            required
-                        />
-                    </div>
-                    <button
-                        className="login__btn"
-                        onClick={handleSignIn}
-                    >
-                        Login
-                    </button>
                 </div>
-            </div>
 
-            <div className="register">
-                <h1>Register</h1>
+                <div className="register col card">
+                    <h2>Create Account</h2>
 
-                <div className="login__container">
-                    <div>
-                        <label style={{textAlign: "left", fontWeight: 'bold'}}>E-mail Address: </label>
-                        <input
-                            type="text"
-                            className="login__textBox"
-                            value={registerEmail}
-                            onChange={(e) => setRegisterEmail((e.target.value).toLowerCase())}
-                            placeholder="E-mail Address"
-                            required
-                        />
+                    <div className="login__container">
+                        <div>
+                            <label className="cardText">E-mail Address</label>
+                            <input
+                                type="text"
+                                className="login__textBox"
+                                value={registerEmail}
+                                onChange={(e) => setRegisterEmail((e.target.value).toLowerCase())}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="cardText">Password</label>
+                            <input
+                                type="text"
+                                className="login__textBox"
+                                value={registerPassword}
+                                onChange={(e) => setRegisterPassword(e.target.value)}
+                                required
+                                
+                            />
+                        </div>
+                        <button
+                            className="login__btn"
+                            onClick={handleRegister}
+                        >
+                            Create Account
+                        </button>
                     </div>
-                    <div>
-                        <label style={{textAlign: "left", fontWeight: 'bold'}}>Password: </label>
-                        <input
-                            type="text"
-                            className="login__textBox"
-                            value={registerPassword}
-                            onChange={(e) => setRegisterPassword(e.target.value)}
-                            placeholder="Password"
-                            required
-                        />
-                    </div>
-                    <button
-                        className="login__btn"
-                        onClick={handleRegister}
-                    >
-                        Register
-                    </button>
                 </div>
-            </div>
+            </div> 
         </div>
     );
 };

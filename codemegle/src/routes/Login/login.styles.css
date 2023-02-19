@@ -1,0 +1,72 @@
+body {
+    background-color: lightblue;
+}
+  
+
+.title {
+    margin-top: 1.75rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+
+  }
+  
+.column {
+    /* padding-left: 30rem;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1; */
+    width: 50%;
+    height: 100vh;
+    justify-content: center;
+
+}
+
+.card {
+    border: 1px solid black;
+    height: 300px;
+    margin-top: 2.5rem;
+    width: 20em;
+    float: left;
+    background-color: white;
+    margin-left: 32px;
+    border-radius: 10px; 
+}
+
+.login__textBox {
+    display: block;
+    width: 18em;
+    justify-content: center;
+    margin: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+label {
+    text-align: left;
+    margin: 1rem;
+}
+
+button {
+    margin: 3rem;
+    width: 12rem;
+    height: 1.5rem;
+    background-color: darkcyan;
+    color: white;
+    border: none;
+    border-radius:4px;
+
+}
+
+.cardText {
+    margin: 0.75rem;
+    text-align: left;
+    
+}
+  

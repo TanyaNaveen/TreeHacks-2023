@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, getToDoList, addToDoItem, deleteToDoItem } from "../../utils/firebase/firebase.utils";
+import { auth, getStream, setStreamStatus } from "../../utils/firebase/firebase.utils";
 import { useAuthState } from "react-firebase-hooks/auth";
+
+//let account_id_1 = "";
+let account_id_2 ="hLBENr";
+
+let publish_token_1 = "16a0c61d23a4f66b75461311ebb815f1832bdf7291e8f487d99c662a4eae0ad0";
+//let publish_token_2 = "";
+
+let stream_name_1 = "lear5i93";
+let stream_name_2 = "leb2jnrj";
 
 // let startBtn = document.getElementById("startBtn");
 let endBtn = document.getElementById("end-btn");
@@ -15,21 +24,54 @@ function addStreamToYourVideoTag(mediaTrack) {
 	videoPlayer1.autoplay = true;
 
     videoPlayer2.hidden = false;
+    videoPlayer2.src = `https://viewer.millicast.com?streamId=${account_id_2}/${stream_name_2}`;
+
     endBtn.hidden = false;
     endBtn.onclick = stopStream; 
 }
 
+const streamIDs = ["KzVX8Ky2Xuo8h5AnNJrI", "p5C4AysRihA3Q4UhOkiV"]
+
+
 const tokenGenerator = () =>
     window.millicast.Director.getPublisher({
-        token: "16a0c61d23a4f66b75461311ebb815f1832bdf7291e8f487d99c662a4eae0ad0", 
-        streamName: "lear5i93",
+        token: publish_token_1, 
+        streamName: stream_name_1,
     });
 
-    const publisher = new window.millicast.Publish("lear5i93", tokenGenerator);
+const publisher = new window.millicast.Publish(stream_name_1, tokenGenerator);
 
 async function connectStream() {
-    // startBtn.disabled = true;
-	// endBtn.disabled = false;
+
+    let currentUser = "";
+    let otherUser = "";
+    let streamIDChanged = null;
+
+    let k = 0;
+
+    for (let i = 0; i < 2; i++) {
+        getStream(streamIDs[i]).then(
+            (streamObject) => 
+                (!streamObject.status && k == 0) ? 
+                    (currentUser = streamObject, streamIDChanged = streamIDs[i],
+                        k = k + 1,
+                        console.log("HERE!")) :
+                    (otherUser = streamObject,
+                        console.log("HERE 2!"),
+                        console.log(streamObject))
+        );
+    }
+
+    //account_id_1 = currentUser["account-id"];
+    account_id_2 = otherUser["account-id"];
+
+    publish_token_1 = currentUser["publish-token"];
+    //publish_token_2 = otherUser["publish-token"];
+
+    stream_name_1 = currentUser["stream-name"];
+    stream_name_2 = otherUser["stream-name"];
+
+    setStreamStatus(streamIDChanged, true);
 
     const mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
     addStreamToYourVideoTag(mediaStream);
@@ -50,6 +92,11 @@ async function connectStream() {
 function stopStream() {
 	//Ends Stream and resets browser.
     publisher.stop();
+
+    for (let i = 0; i < 2; i++) {
+        setStreamStatus(streamIDs[i], false);
+    }
+
 	location.reload(); // eslint-disable-line no-restricted-globals
 }
 
@@ -57,7 +104,7 @@ const CodemegleHome = () => {
     const [user, loading, error] = useAuthState(auth);
     const [toDoItems, setToDoItems] = useState([]);
     const [newItem, setNewItem] = useState("");
-    const [refresh, setRefresh] = useState("");
+    // const [refresh, setRefresh] = useState("");
 
     const navigate = useNavigate();
 
@@ -66,22 +113,6 @@ const CodemegleHome = () => {
         if (!user) return navigate("/");
         // eslint-disable-next-line
     }, [user, loading, navigate]);
-
-    useEffect(() => {
-        if (!loading) {
-            getToDoList(user.email).then((items) => setToDoItems(items));
-        }
-    }, [user, loading, newItem, refresh]);
-
-    const handleAddNewItem = () => {
-        addToDoItem(toDoItems, user.email, newItem);
-        setNewItem("");
-    };
-
-    const handleDeleteItem = (deleteItem) => {
-        deleteToDoItem(toDoItems, user.email, deleteItem);
-        setRefresh(deleteItem);
-    };
 
     return (
         <div>

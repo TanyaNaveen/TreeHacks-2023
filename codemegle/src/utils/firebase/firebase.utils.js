@@ -71,3 +71,20 @@ export const deleteToDoItem = async (currentItems, email, deleteItem) => {
         items: [...newItems],
     });
 };
+
+export const getStream = async (streamID) => {
+    try {
+        const docSnap = await getDoc(doc(db, "streams", streamID));
+        console.log(docSnap.data().status)
+        return docSnap.data();
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const setStreamStatus = async (streamID, newStatus) => {
+    await setDoc(doc(db, "streams", streamID), {
+        status: newStatus,
+    });
+};

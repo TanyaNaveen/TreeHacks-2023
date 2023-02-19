@@ -32,10 +32,12 @@ code {
 
 .endSession {
   display:block;
+  margin:auto;
 }
 
 .vidBox {
   margin-left: 3rem;
+  justify-content: center;
 }
 
 

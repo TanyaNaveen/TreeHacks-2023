@@ -4,6 +4,11 @@ import { auth, getStream, setStreamStatus, getChallengeNumber, setChallengeNumbe
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./codemegle-home.css";
 import logo from "./logo.png";
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import ReactDom from 'react-dom'
+
+import AceEditor from 'react-ace';
 
 
 const challengeIDs = [
@@ -129,8 +134,7 @@ async function connectStream() {
         .then(data => {
             console.log(data); // This will log an array of challenge objects to the console
 
-            challenge_description.innerHTML = data["description"]
-            challenge_category.innerHTML = data["category"]
+            challenge_description.innerHTML = "<ReactMarkdown>".concat(data["description"]).concat("</ReactMarkdown")
 
             let new_challenge_number = getRandomInt(0, 15);
             setChallengeNumber(challengeIDs[new_challenge_number]);
@@ -195,6 +199,9 @@ const CodemegleHome = () => {
                                 </td>
                             </tr>
                             <tr>
+                                <div>
+                                    <AceEditor mode="java" theme="monokai" />
+                                </div>
                             </tr>
                         </tbody>
                     </div>

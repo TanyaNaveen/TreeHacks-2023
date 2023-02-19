@@ -31,16 +31,18 @@
     -->
     <title>React App</title>
   </head>
-  <body>
+  <body> 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <div>
+      <div>
+
       <p class="description" id="challenge-description"></p>
-      <div><video width="300" height="300" id="videoPlayer1" class="vidBox" hidden controls>
+      <video width="600" height="300" id="videoPlayer1" class="vidBox" hidden controls>
           Your browser does not support the video playback with the video tag.
-        </video></div>
-      <div><iframe class="vidBox" src="https://viewer.millicast.com?streamId=hLBENr/leb2jnrj" width="300" height="300" hidden></iframe></div>
-      <div><iframe class="vidBox" id="videoPlayer2" src="https://viewer.millicast.com?streamId=fzRXnJ/lear5i93" allowfullscreen width="300" height="300" hidden></iframe></div>
+      </video>
+      <iframe class="vidBox" src="https://viewer.millicast.com?streamId=hLBENr/leb2jnrj" width="600" height="300" hidden></iframe>
+      <iframe class="vidBox" id="videoPlayer2" src="https://viewer.millicast.com?streamId=fzRXnJ/lear5i93" allowfullscreen width="600" height="300" hidden></iframe>
       <div><button id="end-btn" hidden> End Session </button></div>
     </div>
     <!--

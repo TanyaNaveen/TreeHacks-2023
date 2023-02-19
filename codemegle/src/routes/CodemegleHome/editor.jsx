@@ -1,8 +1,14 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import 'brace/mode/java'
+import 'brace/theme/monokai'
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+import React, { Component } from 'react';
+import AceEditor from 'react-ace';
+export default class Main extends Component {
+  render() {
+    return (
+      <div>
+        <AceEditor mode="java" theme="monokai" />
+      </div>
+    );
+  }
+}

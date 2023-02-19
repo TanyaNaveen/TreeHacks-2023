@@ -14,6 +14,7 @@ const CodemegleHome = () => {
     useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");
+        // eslint-disable-next-line
     }, [user, loading, navigate]);
 
     useEffect(() => {
@@ -34,7 +35,7 @@ const CodemegleHome = () => {
 
     return (
         <div>
-            <h1>To-Do List</h1>
+            <h1>Codemegle</h1>
 
             {toDoItems && user ? (
                 <table style={{
@@ -45,8 +46,10 @@ const CodemegleHome = () => {
                     <div>
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Item</th>
+                                {//<th>#</th>
+                                }
+                                {//<th>Item</th>
+                                }
                             </tr>
                         </thead>
                         <tbody>
@@ -60,14 +63,18 @@ const CodemegleHome = () => {
                             </tr>
                         )))}
                             <tr>
-                                <td>{"New"}</td>
+                                <td>{"Name (Optional)"}</td>
+                            </tr>
+                            <tr>
                                 <td>
                                     <input value={newItem} type="text" id="newItem" name="newItem" onChange={(e) => {setNewItem(e.target.value)}} />
                                 </td>
+                            </tr>
+                            <tr>
                                 <td><button 
                                     variant="light"
                                     onClick={handleAddNewItem}
-                                    >Add New</button>
+                                    >Pair Me</button>
                                 </td>
                             </tr>
                         </tbody>

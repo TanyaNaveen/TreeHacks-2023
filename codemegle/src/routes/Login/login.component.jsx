@@ -42,7 +42,7 @@ const Login = () => {
 
     return (
         <div className="page">
-            <h1 className="title">Welcome to Codemegle!</h1>
+            <h1 className="title">codemingle</h1>
             <div className="row">
 
                 <div className="login col card">

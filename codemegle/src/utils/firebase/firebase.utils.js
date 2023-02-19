@@ -75,7 +75,6 @@ export const deleteToDoItem = async (currentItems, email, deleteItem) => {
 export const getStream = async (streamID) => {
     try {
         const docSnap = await getDoc(doc(db, "streams", streamID));
-        console.log(docSnap.data().status)
         return docSnap.data();
 
     } catch (error) {

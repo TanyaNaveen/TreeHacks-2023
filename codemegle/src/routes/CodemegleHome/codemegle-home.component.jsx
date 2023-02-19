@@ -6,7 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 //let account_id_1 = "";
 let account_id_2 ="hLBENr";
 
-let publish_token_1 = "16a0c61d23a4f66b75461311ebb815f1832bdf7291e8f487d99c662a4eae0ad0";
+let publish_token_1 = "54e97c526aec4b0e71e15166f2981735da9043895c7758b0ee89d123b56d8b3e";
 //let publish_token_2 = "";
 
 let stream_name_1 = "lear5i93";
@@ -24,6 +24,10 @@ function addStreamToYourVideoTag(mediaTrack) {
 	videoPlayer1.autoplay = true;
 
     videoPlayer2.hidden = false;
+
+    //console.log(account_id_2);
+    //console.log(stream_name_2);
+
     videoPlayer2.src = `https://viewer.millicast.com?streamId=${account_id_2}/${stream_name_2}`;
 
     endBtn.hidden = false;
@@ -45,7 +49,7 @@ async function connectStream() {
 
     let currentUser = "";
     let otherUser = "";
-    let streamIDChanged = null;
+    let streamIDChanged =  streamIDs[1];
 
     let k = 0;
 
@@ -53,25 +57,46 @@ async function connectStream() {
         getStream(streamIDs[i]).then(
             (streamObject) => 
                 (!streamObject.status && k == 0) ? 
-                    (currentUser = streamObject, streamIDChanged = streamIDs[i],
+                    (   streamIDChanged = streamIDs[i],
                         k = k + 1,
-                        console.log("HERE!")) :
-                    (otherUser = streamObject,
+                        console.log("HERE!"),
+                        publish_token_1 = streamObject["publish-token"],
+                        stream_name_1 = streamObject["stream-name"],
+                        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"),
+                        console.log(streamObject),
+                        console.log(publish_token_1),
+                        console.log(stream_name_1),
+                        console.log(account_id_2),
+                        console.log(stream_name_2),
+                        console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$") ) :
+                    (   
                         console.log("HERE 2!"),
-                        console.log(streamObject))
-        );
+                        console.log(streamObject),
+                        account_id_2 = streamObject["account-id"],
+                        stream_name_2 = streamObject["stream-name"],
+                        console.log("****************************"),
+                        console.log(streamObject),
+                        console.log(publish_token_1),
+                        console.log(stream_name_1),
+                        console.log(account_id_2),
+                        console.log(stream_name_2),
+                        console.log("****************************")
+                    )
+            );
     }
 
-    //account_id_1 = currentUser["account-id"];
-    account_id_2 = otherUser["account-id"];
-
-    publish_token_1 = currentUser["publish-token"];
-    //publish_token_2 = otherUser["publish-token"];
-
-    stream_name_1 = currentUser["stream-name"];
-    stream_name_2 = otherUser["stream-name"];
-
     setStreamStatus(streamIDChanged, true);
+    //account_id_1 = currentUser["account-id"];
+    
+    console.log("IMPORTANT");
+    console.log("######################");
+    console.log(publish_token_1);
+    console.log(stream_name_1);
+    console.log(account_id_2);
+    console.log(stream_name_2);
+    console.log("######################");
+
+    //publish_token_2 = otherUser["publish-token"];
 
     const mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
     addStreamToYourVideoTag(mediaStream);

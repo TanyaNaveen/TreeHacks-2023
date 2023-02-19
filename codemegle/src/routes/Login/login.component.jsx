@@ -42,7 +42,7 @@ const Login = () => {
 
     return (
         <div className="page">
-            <img src={logo} alt="logo" height={150} width={400}/>
+            <img src={logo} alt="logo" height={200} width={550}/>
             <div className="row">
 
                 <div className="login col card">

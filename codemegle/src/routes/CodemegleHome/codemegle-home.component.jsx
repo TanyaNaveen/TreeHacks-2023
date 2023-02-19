@@ -5,6 +5,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import "./codemegle-home.css";
 import logo from "./logo.png";
 
+import AceEditor from 'react-ace';
+
 
 const challengeIDs = [
 "5143cc9694a24abcd2000001",
@@ -195,6 +197,9 @@ const CodemegleHome = () => {
                                 </td>
                             </tr>
                             <tr>
+                                <div>
+                                    <AceEditor mode="java" theme="monokai" />
+                                </div>
                             </tr>
                         </tbody>
                     </div>

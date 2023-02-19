@@ -5,6 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <script src="https://cdn.jsdelivr.net/npm/@millicast/sdk/dist/millicast.umd.min.js"></script>
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -29,6 +30,14 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div>
+      <video width="360" height="360" id="videoPlayer1" class="vidBox" hidden controls>
+        Your browser does not support the video playback with the video tag.
+      </video>
+      <iframe src="https://viewer.millicast.com?streamId=hLBENr/leb2jnrj" width="360" height="360" hidden></iframe>
+      <iframe id="videoPlayer2" src="https://viewer.millicast.com?streamId=fzRXnJ/lear5i93" allowfullscreen width="360" height="360" hidden></iframe>
+      <button id="end-btn" hidden> End Session </button>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

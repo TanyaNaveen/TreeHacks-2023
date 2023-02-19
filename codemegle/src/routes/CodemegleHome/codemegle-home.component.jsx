@@ -1,9 +1,28 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, getStream, setStreamStatus } from "../../utils/firebase/firebase.utils";
+import { auth, getStream, setStreamStatus, getChallengeNumber, setChallengeNumber } from "../../utils/firebase/firebase.utils";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./codemegle-home.css";
 import logo from "./logo.png";
+
+
+const challengeIDs = [
+"5143cc9694a24abcd2000001",
+"51689e27fe9a00b126000004",
+"52b7ed099cdc285c300001cd",
+"54b058ce56f22dc6fe0011df",
+"55ec80d40d5de30631000025",
+"56d060d90f9408fb3b000b03",
+"58281843cea5349c9f000110",
+"58296c407da141e2c7000271",
+"58f6000bc0ec6451960000fd",
+"59293c2cfafd38975600002d",
+"601c6f43bee795000d950ed1",
+"63022799acfb8d00285b4ea0",
+"6355b3975abf4f0e5fb61670",
+"638c92b10e43cc000e615a07",
+"63b71bc0834251098ca84b05"
+]
 
 
 //let account_id_1 = "";
@@ -19,6 +38,14 @@ let stream_name_2 = "leb2jnrj";
 let endBtn = document.getElementById("end-btn");
 let videoPlayer1 = document.getElementById("videoPlayer1");
 let videoPlayer2 = document.getElementById("videoPlayer2");
+let challenge_description = document.getElementById("challenge-description");
+let challenge_category = document.getElementById("challenge-category");
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+  }
 
 function addStreamToYourVideoTag(mediaTrack) {
 	// Takes in a stream and assigns it to the <video> element
@@ -86,8 +113,31 @@ async function connectStream() {
       // Start broadcast
       try {
         await publisher.connect(broadcastOptions);
+
         //To view the stream navigate to: https://viewer.millicast.com?streamId=YOUR_ACCOUNT_ID/YOUR_STREAM_NAME
       } catch (e) {
+        console.error('Connection failed, handle error', e);
+      }
+
+      let challenge_number = "51689e27fe9a00b126000004"
+
+      try {
+        let challenge_number = await getChallengeNumber();
+
+        fetch(`https://www.codewars.com/api/v1/code-challenges/${challenge_number}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // This will log an array of challenge objects to the console
+
+            challenge_description.innerHTML = data["description"]
+            challenge_category.innerHTML = data["category"]
+
+            let new_challenge_number = getRandomInt(0, 15);
+            setChallengeNumber(challengeIDs[new_challenge_number]);
+        })
+        .catch(error => console.error(error));
+
+      } catch(e) {
         console.error('Connection failed, handle error', e);
       }
 }

@@ -88,3 +88,29 @@ export const setStreamStatus = async (streamID, newStatus) => {
         status: newStatus,
     });
 };
+
+export const getChallengeNumber = async () => {
+    try {
+        const docSnap = await getDoc(doc(db, "current-challenge", "1"));
+        return docSnap.data().challenge_number;
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const setChallengeNumber = async (newChallengeNumber) => {
+    await setDoc(doc(db, "current-challenge", "1"), {
+        challenge_number: newChallengeNumber,
+    });
+};
+
+export const getChallengeId = async() => {
+    try {
+        const docSnap = await getDoc(doc(db, "current-challenge", "1"));
+        return docSnap.data().challenge_number;
+
+    } catch (error) {
+        console.error(error)
+    }
+}

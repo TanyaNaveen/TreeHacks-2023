@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { React } from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from 'react-router-dom';
+
+import Login from './routes/Login/login.component';
+import CodemegleHome from './routes/CodemegleHome/codemegle-home.component';
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='Root'>
+        <div className='App'>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element ={ <Login /> } />
+                    <Route exact path="/home" element ={ <CodemegleHome /> } />
+                </Routes>
+            </BrowserRouter>
+        </div>
     </div>
   );
 }
